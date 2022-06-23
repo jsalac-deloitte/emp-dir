@@ -8,7 +8,9 @@ use App\Http\Controllers\API\BaseController;
 
 class CompanyController extends BaseController
 {
-    //
+    /**
+     * inject the service
+     */
     public function __construct(CompanyService $service)
     {
         $this->modelService = $service;

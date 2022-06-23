@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Company;
+use App\Models\Department;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Notifications\Notifiable;
@@ -23,6 +25,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'user_type',
+        'company_id'
     ];
 
     /**
@@ -44,9 +48,30 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
+    /**
+     * hash password before saving it
+     */
     public function setPasswordAttribute($pass)
     {
         $this->attributes["password"] = Hash::make($pass);
     }
+
+    /**
+     * company relationship
+     */
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
+
+    /**
+     * departments under a user
+     */
+    public function departments()
+    {
+        return $this->hasMany(Department::class);
+    }
+
+
+
 }
