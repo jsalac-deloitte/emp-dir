@@ -16,11 +16,13 @@ class DepartmentResource extends JsonResource
     {
         return [
             "id" => $this->id,
-            "departmentName" => $this->department_name,
+            "department_name" => $this->department_name,
             "user" => $this->user->name,
-            "companyName" => $this->user->company->company_name,
-            "createdAt" => date_format($this->created_at,"Y-M-d H:i:s a"),
-            "updatedAt" => date_format($this->updated_at,"Y-M-d H:i:s a"),
+            "user_id" => $this->user->id,
+            "company_name" => $this->user->company->company_name,
+            "company_id" => $this->user->company->id,
+            "created_at" => date_format($this->created_at,"Y-M-d H:i:s a"),
+            "updated_at" => date_format($this->updated_at,"Y-M-d H:i:s a"),
             "status" => $this->deleted_at ? "Deleted" : "Active"
         ];
     }
