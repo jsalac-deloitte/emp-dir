@@ -112,4 +112,28 @@ return [
 
     'password_timeout' => 10800,
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Blocking time out
+    |--------------------------------------------------------------------------
+    |
+    | Here you may define the amount of seconds before a user can login after 
+    | several times of credential error
+    |
+    */
+    'blocked_minutes' => 2,
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Max attempt for erronous credential
+    |--------------------------------------------------------------------------
+    |
+    | Here you may define the number of try before the system, temporarily  
+    | blocked the end user
+    |
+    */
+    'max_attempt' => 3,
+
 ];

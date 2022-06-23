@@ -6,6 +6,7 @@ use App\Http\Controllers\API\CompanyController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\DepartmentController;
 use App\Http\Controllers\API\EmployeeController;
+use App\Http\Controllers\API\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,3 +63,14 @@ Route::as('employees.')
         Route::patch("employees/{id}", "update")->name("update");
         Route::delete("employees/{id}", "destroy")->name("destroy");
 });
+
+
+Route::as("auth.")
+    ->controller(AuthController::class)
+    ->group(function() {
+        Route::post("login", "login")->name("api-login");
+        Route::post("verify-account/{token}", "verifyAccount")->name("verify-account");
+        Route::get('/verify-account/{token}', function ($token) {
+            return Inertia::render('Auth/VerifyAccount', ["token" => $token]);
+        })->name("verify");
+    });
