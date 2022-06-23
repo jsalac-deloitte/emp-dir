@@ -20,7 +20,6 @@ class CreateEmployeesTable extends Migration
             $table->string("last_name",70)->nullable();
             $table->string("middle_name",70)->nullable();
             $table->string("position",70)->nullable();
-            $table->string("user_type",30)->nullable();
             $table->unsignedBigInteger("company_id")->nullable();
             $table->unsignedBigInteger("department_id")->nullable();
             $table->timestamps();
