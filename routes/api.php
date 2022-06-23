@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\CompanyController;
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\DepartmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,4 +40,14 @@ Route::as('users.')
         Route::post("users", "store")->name("store");
         Route::patch("users/{id}", "update")->name("update");
         Route::delete("users/{id}", "destroy")->name("destroy");
+});
+
+Route::as('departments.')
+    ->controller(DepartmentController::class)
+    ->group(function () {
+        Route::get("departments", "all")->name("list");
+        Route::get("departments/{id}", "get")->name("get");
+        Route::post("departments", "store")->name("store");
+        Route::patch("departments/{id}", "update")->name("update");
+        Route::delete("departments/{id}", "destroy")->name("destroy");
 });

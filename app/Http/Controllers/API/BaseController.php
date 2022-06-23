@@ -42,7 +42,7 @@ class BaseController extends Controller
 
         } catch(\Exception $ex) {
             DB::rollback();
-            return response()->json(["message" => $ex->getMessage()], $ex->statusCode());
+            return response()->json(["message" => $ex->getMessage()]);
         }
     }
 
@@ -64,7 +64,7 @@ class BaseController extends Controller
         } catch(\Exception $ex) {
             Log::info($ex);
             DB::rollback();
-            return response()->json(["message" => $ex->getMessage()], $ex->statusCode());
+            return response()->json(["message" => $ex->getMessage()]);
         }
     }
 
@@ -82,7 +82,7 @@ class BaseController extends Controller
         }catch(ModelNotFoundException $ex) {
             return response()->json(["message" => "Record not Found!"], 404);
         }  catch(\Exception $ex) {
-            return response()->json(["message" => $ex->getMessage()], $ex->statusCode());
+            return response()->json(["message" => $ex->getMessage()]);
         }
     }
 
@@ -105,7 +105,7 @@ class BaseController extends Controller
         }catch(ModelNotFoundException $ex) {
             return response()->json(["message" => "Record not Found!"], 404);
         }  catch(\Exception $ex) {
-            return response()->json(["message" => $ex->getMessage()], $ex->statusCode());
+            return response()->json(["message" => $ex->getMessage()]);
         }
     }
 
@@ -128,7 +128,7 @@ class BaseController extends Controller
         }catch(ModelNotFoundException $ex) {
             return response()->json(["message" => "Record not Found!"], 404);
         }  catch(\Exception $ex) {
-            return response()->json(["message" => $ex->getMessage()], $ex->statusCode());
+            return response()->json(["message" => $ex->getMessage()]);
         }
     }
 
