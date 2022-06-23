@@ -3,6 +3,7 @@
 namespace App\Http\Services;
 
 use App\Models\User;
+use App\Http\Requests\UserRequest;
 use App\Http\Services\BaseService;
 use App\Http\Requests\CompanyRequest;
 

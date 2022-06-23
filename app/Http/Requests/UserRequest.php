@@ -26,9 +26,9 @@ class UserRequest extends FormRequest
         return [
             "email" => "required|max:195|unique:users,email,".$id,
             "name" => "required|max:195",
-            "password" => "required|max:195",
+            "password" => "required|max:195|min:4",
             "confirm_password" => "required|same:password",
-            "company_id"    => "required|exists:companies,id"
+            "company_id"    => "required|exists:companies,id,deleted_at,NULL"
         ];
     }
 }
