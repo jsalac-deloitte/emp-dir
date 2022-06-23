@@ -113,37 +113,7 @@ class AuthService
     }
 
 
-    /**
-     * Activate account 
-     * @param string token
-     * @param string code
-     * @return array
-     */
-    public function activateAccount($payload)
-    {
-       
-        try {   
-            DB::beginTransaction();
-            $verify = UserVerify::
-                where("token", $payload['token'])
-                ->where("code", $payload['code'])
-                ->first();
-            if ($verify) {
-                $user = User::where("uuid", $verify->user_uuid)->first();
-                $user->email_verified_at =  Carbon::now();
-                $user->save();
-                $verify->delete();
-                DB::commit();
-                return $user;
-            }
-            return $verify;
-        } catch (\Exception $ex) {
-            Log::critical($ex->getMessage());
-            DB::rollback();
-            dd($ex);
-        }
-      
-    }
+
 
     /**
      * Forgot Password
