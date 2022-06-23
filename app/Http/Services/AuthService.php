@@ -2,11 +2,14 @@
 
 namespace App\Http\Services;
 
+use Carbon\Carbon;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Mail\ResetPasswordMail;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
-use Carbon\Carbon;
 
 class AuthService
 {
@@ -134,7 +137,7 @@ class AuthService
             $data = array(
                 "token"     => $token,
                 "url"       => $request->url . "?token=".$token."&email=".$user->email,
-                "name" => $user->userable->first_name,
+                "name" => $user->name,
                 "email"     => $user->email
             );
        
