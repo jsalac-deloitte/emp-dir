@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserRequest extends FormRequest
+class ResetPasswordRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,16 +21,16 @@ class UserRequest extends FormRequest
      *
      * @return array
      */
-    public function rules($id = null)
+    public function rules()
     {
         return [
-            "email" => "required|max:195|unique:users,email,".$id,
-            "name" => "required|max:195",
+            "email" => "required|email:rfc,dns||exists:users,email",
+            "token"   => "required|exists:password_resets,token",
             "password" => "required|max:195|string|min:6|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$/",
-            "confirm_password" => "required|same:password",
-            "company_id"    => "required|exists:companies,id,deleted_at,NULL"
+            "confirm_password" => "required|max:195|same:password"
         ];
     }
+
 
     /**
      * error messages
@@ -41,12 +41,11 @@ class UserRequest extends FormRequest
         return [
             "email.required" => "Email is required",
             "email.exists"   => "Sorry we cannot find your email. please check it and try again",
-            "name.required" => "User's name is required",
+            "token.required" => "Token is required to reset your password",
+            "token.exists"   => "Invalid token - please check and try again",
             "password.required" => "Password  is required",
             "password.min" => "Password  is atleast 6 characters",
-            "password.regex" => "Password should contain Capital letter, small letter and number",
-            "company_id.required" => "Company Id is required",
-            "company_id.exists" => "Invalid company Id",
+            "password.regex" => "Password should contain Capital letter, small letter and number"
         ];
     }
 }
