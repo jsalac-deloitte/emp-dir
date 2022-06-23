@@ -68,9 +68,6 @@ Route::as('employees.')
 Route::as("auth.")
     ->controller(AuthController::class)
     ->group(function() {
-        Route::post("login", "login")->name("api-login");
-        Route::post("verify-account/{token}", "verifyAccount")->name("verify-account");
-        Route::get('/verify-account/{token}', function ($token) {
-            return Inertia::render('Auth/VerifyAccount', ["token" => $token]);
-        })->name("verify");
+        Route::post("login", "login")->name("api.login");
+        Route::post("forgot-password", "forgotPassword")->name("forgot.password");
     });
