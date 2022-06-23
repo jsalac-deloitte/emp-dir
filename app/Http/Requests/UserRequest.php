@@ -21,7 +21,7 @@ class UserRequest extends FormRequest
      *
      * @return array
      */
-    public function rules($id)
+    public function rules($id = null)
     {
         return [
             "email" => "required|max:195|unique:users,email,".$id,

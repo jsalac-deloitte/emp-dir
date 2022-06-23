@@ -21,7 +21,7 @@ class EmployeeRequest extends FormRequest
      *
      * @return array
      */
-    public function rules($id)
+    public function rules($id = null)
     {
         return [
             "company_id" => "required|exists:companies,id",
