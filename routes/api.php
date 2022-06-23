@@ -70,4 +70,5 @@ Route::as("auth.")
     ->group(function() {
         Route::post("login", "login")->name("api.login");
         Route::post("forgot-password", "forgotPassword")->name("forgot.password");
+        Route::post("reset-password", "resetPassword")->name("reset.password");
     });

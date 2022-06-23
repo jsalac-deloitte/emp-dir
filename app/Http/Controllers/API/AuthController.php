@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Services\AuthService;
+use App\Http\Requests\ResetPasswordRequest;
 use App\Http\Controllers\API\BaseController;
 use App\Http\Requests\ForgotPasswordRequest;
 

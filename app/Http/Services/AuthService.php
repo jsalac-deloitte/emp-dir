@@ -137,7 +137,7 @@ class AuthService
             $data = array(
                 "token"     => $token,
                 "url"       => $request->url . "?token=".$token."&email=".$user->email,
-                "name" => $user->name,
+                "name"      => $user->name,
                 "email"     => $user->email
             );
        
