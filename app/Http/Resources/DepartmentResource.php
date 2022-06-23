@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserResource extends JsonResource
+class DepartmentResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,10 +16,9 @@ class UserResource extends JsonResource
     {
         return [
             "id" => $this->id,
-            "name" => $this->name,
-            "userType" => $this->user_type,
-            "company" => $this->company->company_name,
-            "companyId" => $this->company_id,
+            "departmentName" => $this->department_name,
+            "user" => $this->user->name,
+            "companyName" => $this->user->company->company_name,
             "createdAt" => date_format($this->created_at,"Y-M-d H:i:s a"),
             "updatedAt" => date_format($this->updated_at,"Y-M-d H:i:s a"),
             "status" => $this->deleted_at ? "Deleted" : "Active"

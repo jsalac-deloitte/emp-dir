@@ -2,14 +2,14 @@
 
 namespace App\Http\Services;
 
-use App\Models\User;
-use App\Http\Requests\UserRequest;
+use App\Models\Department;
+use App\Http\Requests\DepartmentRequest;
 use App\Http\Services\BaseService;
-use App\Http\Requests\CompanyRequest;
 
-class UserService extends BaseService
+
+class DepartmentService extends BaseService
 {
-    public function __construct(User $model)
+    public function __construct(Department $model)
     {
         $this->model = $model;
 
@@ -17,17 +17,17 @@ class UserService extends BaseService
 		$this->searchableColumns = $this->model->getFillable();
 
 		// default value id
-		$this->defaultSortKey =  ["name"] ;
+		$this->defaultSortKey =  ["department_name"] ;
 
         /**
          * instantiate the Request to validate the payload
          */
-		$this->requestValidator = new UserRequest;
+		$this->requestValidator = new DepartmentRequest;
 
         /**
          * model resource for formatting the response
          */
-        $this->modelResource = "App\Http\Resources\UserResource";
+        $this->modelResource = "App\Http\Resources\DepartmentResource";
 
     }
 }
