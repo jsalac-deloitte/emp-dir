@@ -182,7 +182,7 @@ class AuthService
                     $user->update(["password" => $request->password, "blocked_until" => null, "attempt" => 0]);
                     DB::table("password_resets")->where("email", $pr->email)->delete();
                     $status = true;
-                    $msg =  "Password successfully updated - you can try to login now." ;
+                    $msg =  "Password successfully changed - you can try to login now." ;
                     DB::commit();
                 } else {
                     $msg =  "Token Expired - please try to request new reset link ";

@@ -55,8 +55,9 @@ class AuthController extends BaseController
             Log::critical("---Password Reset Request error----");
             Log::critical($response["message"]);
             return redirect()->back()->with('errorMessage', $response["message"]);
+            return response()->json(['message' => $response["message"]], 400);
         }
-        return redirect("login")->with('message', $response["message"]);
+        return response()->json(['message' => $response["message"]], 200);
     }
 
 }
