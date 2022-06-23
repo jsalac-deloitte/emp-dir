@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\CompanyController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\DepartmentController;
+use App\Http\Controllers\API\EmployeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,4 +51,14 @@ Route::as('departments.')
         Route::post("departments", "store")->name("store");
         Route::patch("departments/{id}", "update")->name("update");
         Route::delete("departments/{id}", "destroy")->name("destroy");
+});
+
+Route::as('employees.')
+    ->controller(EmployeeController::class)
+    ->group(function () {
+        Route::get("employees", "all")->name("list");
+        Route::get("employees/{id}", "get")->name("get");
+        Route::post("employees", "store")->name("store");
+        Route::patch("employees/{id}", "update")->name("update");
+        Route::delete("employees/{id}", "destroy")->name("destroy");
 });

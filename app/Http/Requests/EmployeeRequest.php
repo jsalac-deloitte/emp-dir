@@ -24,8 +24,8 @@ class EmployeeRequest extends FormRequest
     public function rules($id = null)
     {
         return [
-            "company_id" => "required|exists:companies,id",
-            "department_id" => "required|exists,departments,id",
+            "company_id" => "required|exists:companies,id,deleted_at,NULL",
+            "department_id" => "required|exists:departments,id,deleted_at,NULL",
             "emp_code" => "required|max:195|unique:employees,emp_code,".$id,
             "first_name" => "required|max:195",
             "last_name" => "required|max:195",
