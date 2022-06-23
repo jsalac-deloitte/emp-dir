@@ -2,13 +2,13 @@
 
 namespace App\Http\Services;
 
-use App\Models\Company;
+use App\Models\User;
 use App\Http\Services\BaseService;
 use App\Http\Requests\CompanyRequest;
 
-class CompanyService extends BaseService
+class UserService extends BaseService
 {
-    public function __construct(Company $model)
+    public function __construct(User $model)
     {
         $this->model = $model;
 
@@ -16,17 +16,17 @@ class CompanyService extends BaseService
 		$this->searchableColumns = $this->model->getFillable();
 
 		// default value id
-		$this->defaultSortKey =  ["company_name"] ;
+		$this->defaultSortKey =  ["last_name", "first_name"] ;
 
         /**
          * instantiate the Request to validate the payload
          */
-		$this->requestValidator = new CompanyRequest;
+		$this->requestValidator = new UserRequest;
 
         /**
          * model resource for formatting the response
          */
-        $this->modelResource = "App\Http\Resources\CompanyResource";
+        $this->modelResource = "App\Http\Resources\UserResource";
 
     }
 }

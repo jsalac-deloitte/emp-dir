@@ -21,10 +21,10 @@ class CompanyRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules($id = null)
     {
         return [
-            "company_name" => "required|max:195",
+            "company_name" => "required|max:195|unique:companies,company_name,".$id,
         ];
     }
 }

@@ -21,7 +21,7 @@ class DepartmentRequest extends FormRequest
      *
      * @return array
      */
-    public function rules($id)
+    public function rules($id = null)
     {
         return [
             "department_name" => "required|max:195|unique:departments,department_name,".$id,

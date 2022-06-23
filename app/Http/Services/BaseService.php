@@ -28,7 +28,7 @@ class BaseService
     //get the list of records with pagination
     public function getAll($request)
     {
-        $paginate = $request->paginate ?? 10;
+        $paginate = $request->paginate ?? 5;
         $orderBy  = $request->orderBy ?? $this->defaultSortKey;
         $lookUp   = $request->search ?? "";
         $result   = $this->model
@@ -54,19 +54,15 @@ class BaseService
         return $this->modelResource::collection($result);
     }
 
-    //find using the uuid column
-    public function findUuid(string $uuid)
-    {
-        $data = $this->model->where("uuid", $uuid)->first();
-        return new $this->modelResource($data);
-    }
 
     //find using the incremental id of the table
+    //return resource 
     public function find(int $id)
     {
         $data = $this->findById($id);
         return new $this->modelResource($data);
     }
+
 
     public function findById(int $id)
     {
@@ -99,9 +95,6 @@ class BaseService
         $validated = $request->validate($this->requestValidator->rules());
         $columns = $this->model->getFillable();
         $payload = $request->only($columns);
-        if (in_array("uuid", $columns )) {
-            $payload["uuid"] = Str::uuid(30);
-        }
         return $this->model->create($payload);
     }
 
@@ -113,17 +106,13 @@ class BaseService
             $this->model = $this->find($id);
         }
 
-        $uuid = Str::uuid(30);
+        // $uuid = Str::uuid(30);
         $columns = $this->model->getFillable();
         $fileColumns = $this->model->fileColumns;
         
         foreach($columns as $column) {
             if ($fileColumns && in_array($column, $fileColumns)) {
-                // Check if request is update then assign original
-                // uuid to $photo_name. If not assign new uuid
-                if ($id !== null) {
-                    $uuid = $this->model["uuid"];
-                }
+
                 if($request->file($column) !== null) {
                     $this->model[$column] = $this->storeFile($request, $column, $uuid);
                 }
@@ -131,10 +120,6 @@ class BaseService
                 $this->model[$column] = $request[$column] ?? $this->model[$column];
             }
 
-        }
-
-        if (in_array("uuid", $columns ) and $id === null) {
-            $this->model["uuid"] = $uuid;
         }
 
         $this->model->save();
