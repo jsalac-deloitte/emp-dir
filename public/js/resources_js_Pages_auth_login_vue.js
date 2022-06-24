@@ -60,7 +60,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   setup: function setup() {},
-  props: ["modelValue", "placeholder", "label", "type", "helper", "errorMessage", "name", "type"]
+  props: ["modelValue", "placeholder", "label", "type", "helper", "errorMessage", "name", "type", "required"]
 });
 
 /***/ }),
@@ -241,7 +241,7 @@ var _hoisted_4 = {
   key: 0,
   "class": "text-sm px-4 text-gray-500 absolute right-0 bottom-0"
 };
-var _hoisted_5 = ["type", "placeholder", "value"];
+var _hoisted_5 = ["type", "placeholder", "value", "required"];
 var _hoisted_6 = {
   key: 0,
   "class": "text-red-600 mt-2"
@@ -263,7 +263,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     value: $props.modelValue,
     onInput: _cache[0] || (_cache[0] = function ($event) {
       return _ctx.$emit('update:modelValue', $event.target.value);
-    })
+    }),
+    required: $props.required
   }, null, 40
   /* PROPS, HYDRATE_EVENTS */
   , _hoisted_5), ((_$props$errorMessage = $props.errorMessage) !== null && _$props$errorMessage !== void 0 ? _$props$errorMessage : null) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.errorMessage), 1

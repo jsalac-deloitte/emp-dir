@@ -15,6 +15,7 @@
             class="w-full px-4 py-3 placeholder-gray-400 bg-white border border-gray-500 rounded-xl focus:outline-none shadow-lg"
             :value="modelValue"
             @input="$emit('update:modelValue', $event.target.value)"
+            :required="required"
         />
         <p v-if="errorMessage ?? null" class="text-red-600 mt-2">
             {{ errorMessage }}
@@ -34,6 +35,7 @@ export default {
         "errorMessage",
         "name",
         "type",
+        "required",
     ],
 };
 </script>
