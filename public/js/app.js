@@ -840,6 +840,66 @@ __webpack_require__.r(__webpack_exports__);
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var map = {
+	"./auth/login": [
+		"./resources/js/Pages/auth/login.vue",
+		"/js/vendor",
+		"resources_js_Pages_auth_login_vue"
+	],
+	"./auth/login.vue": [
+		"./resources/js/Pages/auth/login.vue",
+		"/js/vendor",
+		"resources_js_Pages_auth_login_vue"
+	],
+	"./company": [
+		"./resources/js/Pages/company/index.vue",
+		"/js/vendor",
+		"resources_js_Pages_company_index_vue"
+	],
+	"./company/": [
+		"./resources/js/Pages/company/index.vue",
+		"/js/vendor",
+		"resources_js_Pages_company_index_vue"
+	],
+	"./company/index": [
+		"./resources/js/Pages/company/index.vue",
+		"/js/vendor",
+		"resources_js_Pages_company_index_vue"
+	],
+	"./company/index.vue": [
+		"./resources/js/Pages/company/index.vue",
+		"/js/vendor",
+		"resources_js_Pages_company_index_vue"
+	],
+	"./components/Header": [
+		"./resources/js/Pages/components/Header.vue",
+		"/js/vendor",
+		"resources_js_Pages_components_Header_vue"
+	],
+	"./components/Header.vue": [
+		"./resources/js/Pages/components/Header.vue",
+		"/js/vendor",
+		"resources_js_Pages_components_Header_vue"
+	],
+	"./components/InputField": [
+		"./resources/js/Pages/components/InputField.vue",
+		"/js/vendor",
+		"resources_js_Pages_components_InputField_vue"
+	],
+	"./components/InputField.vue": [
+		"./resources/js/Pages/components/InputField.vue",
+		"/js/vendor",
+		"resources_js_Pages_components_InputField_vue"
+	],
+	"./components/PasswordField": [
+		"./resources/js/Pages/components/PasswordField.vue",
+		"/js/vendor",
+		"resources_js_Pages_components_PasswordField_vue"
+	],
+	"./components/PasswordField.vue": [
+		"./resources/js/Pages/components/PasswordField.vue",
+		"/js/vendor",
+		"resources_js_Pages_components_PasswordField_vue"
+	],
 	"./dashboard": [
 		"./resources/js/Pages/dashboard.vue",
 		"/js/vendor",
@@ -849,6 +909,76 @@ var map = {
 		"./resources/js/Pages/dashboard.vue",
 		"/js/vendor",
 		"resources_js_Pages_dashboard_vue"
+	],
+	"./icons/collection-icon": [
+		"./resources/js/Pages/icons/collection-icon.vue",
+		"/js/vendor",
+		"resources_js_Pages_icons_collection-icon_vue"
+	],
+	"./icons/collection-icon.vue": [
+		"./resources/js/Pages/icons/collection-icon.vue",
+		"/js/vendor",
+		"resources_js_Pages_icons_collection-icon_vue"
+	],
+	"./icons/group-icon": [
+		"./resources/js/Pages/icons/group-icon.vue",
+		"/js/vendor",
+		"resources_js_Pages_icons_group-icon_vue"
+	],
+	"./icons/group-icon.vue": [
+		"./resources/js/Pages/icons/group-icon.vue",
+		"/js/vendor",
+		"resources_js_Pages_icons_group-icon_vue"
+	],
+	"./icons/profile-icon": [
+		"./resources/js/Pages/icons/profile-icon.vue",
+		"/js/vendor",
+		"resources_js_Pages_icons_profile-icon_vue"
+	],
+	"./icons/profile-icon.vue": [
+		"./resources/js/Pages/icons/profile-icon.vue",
+		"/js/vendor",
+		"resources_js_Pages_icons_profile-icon_vue"
+	],
+	"./icons/tag-icon": [
+		"./resources/js/Pages/icons/tag-icon.vue",
+		"/js/vendor",
+		"resources_js_Pages_icons_tag-icon_vue"
+	],
+	"./icons/tag-icon.vue": [
+		"./resources/js/Pages/icons/tag-icon.vue",
+		"/js/vendor",
+		"resources_js_Pages_icons_tag-icon_vue"
+	],
+	"./icons/user-icon": [
+		"./resources/js/Pages/icons/user-icon.vue",
+		"/js/vendor",
+		"resources_js_Pages_icons_user-icon_vue"
+	],
+	"./icons/user-icon.vue": [
+		"./resources/js/Pages/icons/user-icon.vue",
+		"/js/vendor",
+		"resources_js_Pages_icons_user-icon_vue"
+	],
+	"./layout/auth-layout": [
+		"./resources/js/Pages/layout/auth-layout.vue",
+		"/js/vendor",
+		"resources_js_Pages_layout_auth-layout_vue"
+	],
+	"./layout/auth-layout.vue": [
+		"./resources/js/Pages/layout/auth-layout.vue",
+		"/js/vendor",
+		"resources_js_Pages_layout_auth-layout_vue"
+	],
+	"./layout/main-layout": [
+		"./resources/js/Pages/layout/main-layout.vue",
+		"/js/vendor",
+		"resources_js_Pages_layout_main-layout_vue"
+	],
+	"./layout/main-layout.vue": [
+		"./resources/js/Pages/layout/main-layout.vue",
+		"/js/vendor",
+		"resources_js_Pages_layout_main-layout_vue"
 	]
 };
 function webpackAsyncContext(req) {

@@ -52,9 +52,6 @@ class AuthController extends BaseController
     {
         $response = $this->service->resetPassword($request);
         if (!$response["success"]) {
-            Log::critical("---Password Reset Request error----");
-            Log::critical($response["message"]);
-            return redirect()->back()->with('errorMessage', $response["message"]);
             return response()->json(['message' => $response["message"]], 400);
         }
         return response()->json(['message' => $response["message"]], 200);
