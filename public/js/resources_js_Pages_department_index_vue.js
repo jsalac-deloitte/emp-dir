@@ -380,7 +380,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var selectedRows = (0,vue__WEBPACK_IMPORTED_MODULE_10__.ref)([]);
     var list = (0,vue__WEBPACK_IMPORTED_MODULE_10__.ref)([]);
     var showSms = (0,vue__WEBPACK_IMPORTED_MODULE_10__.ref)(false);
-    var sms = (0,vue__WEBPACK_IMPORTED_MODULE_10__.reactive)({
+    var sms = (0,vue__WEBPACK_IMPORTED_MODULE_10__.ref)({
       message: "",
       receiver: []
     });
@@ -590,9 +590,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           icon: "warning"
         });
         return;
-      }
+      } // Object.assign(sms.receiver, selectedRows.value);
 
-      Object.assign(sms.receiver, selectedRows.value);
+
+      sms.receiver.value = selectedRows.value;
       sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({
         title: "Send SMS?",
         html: "All employees under the selected department(s) will receive message - continue?  </b>",
@@ -605,9 +606,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         if (result.isConfirmed) {
           _api_httpService_js__WEBPACK_IMPORTED_MODULE_12__["default"].post("/departments/send-sms-to-employees", sms).then(function (response) {
             console.log("response", response);
+            showSms.value = false;
+            selectedRows.value = [];
             return sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({
               title: "SMS Processing",
-              text: "SMS is at background process",
+              text: "Running at the background",
               icon: "success"
             });
           })["catch"](function (errors) {

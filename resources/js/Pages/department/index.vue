@@ -157,7 +157,7 @@ export default {
 
         let showSms = ref(false);
 
-        let sms = reactive({
+        let sms = ref({
             message: "",
             receiver: [],
         });
@@ -368,7 +368,8 @@ export default {
                 });
                 return;
             }
-            Object.assign(sms.receiver, selectedRows.value);
+            // Object.assign(sms.receiver, selectedRows.value);
+            sms.receiver.value = selectedRows.value;
 
             Swal.fire({
                 title: "Send SMS?",
@@ -384,9 +385,11 @@ export default {
                         .post("/departments/send-sms-to-employees", sms)
                         .then((response) => {
                             console.log("response", response);
+                            showSms.value = false;
+                            selectedRows.value = [];
                             return Swal.fire({
                                 title: "SMS Processing",
-                                text: `SMS is at background process`,
+                                text: `Running at the background`,
                                 icon: "success",
                             });
                         })

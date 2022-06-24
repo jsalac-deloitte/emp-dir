@@ -73,12 +73,6 @@ export default {
                 label: "Employees",
             },
             {
-                icon: profileIcon,
-                link: "/profile",
-                title: "Profile info",
-                label: "Profile",
-            },
-            {
                 icon: BellIcon,
                 link: "/smslogs",
                 title: "Sms Logs info",

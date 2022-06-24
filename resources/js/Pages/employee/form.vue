@@ -150,8 +150,8 @@ export default {
     },
     setup(props) {
         const pageTitle = ref("New Employee");
-        let companies = reactive([]);
-        let departments = reactive([]);
+        let companies = ref([]);
+        let departments = ref([]);
         const form = useForm({
             emp_code: "",
             first_name: "",
@@ -190,7 +190,8 @@ export default {
                     params: { columns: "id,company_name" },
                 })
                 .then((response) => {
-                    Object.assign(companies, response.data);
+                    // Object.assign(companies, response.data);
+                    companies.value = response.data;
                 })
                 .catch((errors) => {
                     console.log("Errors", errors);
@@ -209,7 +210,9 @@ export default {
                     params: { columns: "id,department_name" },
                 })
                 .then((response) => {
-                    Object.assign(departments, response.data);
+                    // Object.assign(departments, response.data);
+                    departments.value = response.data;
+                    console.log("dpeat", departments);
                 })
                 .catch((errors) => {
                     console.log("Errors", errors);

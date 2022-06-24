@@ -86,7 +86,7 @@ export default {
     },
     setup(props) {
         const pageTitle = ref("New Department");
-        let users = reactive([]);
+        let users = ref([]);
         const form = useForm({
             department_name: "",
             id: null,
@@ -99,7 +99,7 @@ export default {
                     params: { columns: "id, name" },
                 })
                 .then((response) => {
-                    Object.assign(users, response.data);
+                    users.value = response.data;
                 })
                 .catch((errors) => {
                     console.log("Errors", errors);
