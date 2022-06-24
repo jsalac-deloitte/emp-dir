@@ -34,10 +34,18 @@ import collectionIcon from "./icons/collection-icon";
 import groupIcon from "./icons/group-icon";
 import userIcon from "./icons/user-icon";
 import profileIcon from "./icons/profile-icon";
+import BellIcon from "./icons/BellIcon";
 import { Link } from "@inertiajs/inertia-vue3";
 export default {
     layout: mainLayout,
-    components: { collectionIcon, groupIcon, userIcon, profileIcon, Link },
+    components: {
+        collectionIcon,
+        groupIcon,
+        userIcon,
+        profileIcon,
+        BellIcon,
+        Link,
+    },
     setup() {
         const NAVIGATIONS = [
             {
@@ -64,12 +72,17 @@ export default {
                 title: "Employee list",
                 label: "Employees",
             },
-
             {
                 icon: profileIcon,
                 link: "/profile",
                 title: "Profile info",
                 label: "Profile",
+            },
+            {
+                icon: BellIcon,
+                link: "/smslogs",
+                title: "Sms Logs info",
+                label: "Sms Logs",
             },
         ];
         return { NAVIGATIONS };

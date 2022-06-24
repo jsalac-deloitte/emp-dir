@@ -10,5 +10,16 @@ class SmsLog extends Model
 {
     use HasFactory, SoftDeletes;
 
-    public $fillable = ["info", "mobile_no", "sender_id"];
+    public $fillable = ["payload", "remarks", "message", "api_response", "error"];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'payload' => 'array',
+        'api_response' => 'array',
+    ];
+
 }

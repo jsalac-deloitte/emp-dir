@@ -204,7 +204,7 @@ export default {
          */
         const selectAll = (selectedAll) => {
             let selectAllRows = selectedAll;
-            list.value = store.getters.getCategoryList;
+            list.value = store.getters.getUserList;
             list.value.forEach((item) => {
                 const index = selectedRows.value.indexOf(item.id);
                 if (selectAllRows) {

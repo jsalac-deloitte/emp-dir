@@ -1,27 +1,22 @@
 <template lang="">
     <Head>
-        <title>Companies</title>
-        <meta name="description" content="Company listing" />
+        <title>SmsLog</title>
+        <meta name="description" content="SmsLog listing" />
     </Head>
     <div
         class="flex flex-col h-full py-4 px-2 bg-network bg-no-repeat bg-cover bg-center"
     >
         <h1 class="w-full text-2xl font-bold text-secondary text-center">
-            COMPANIES
+            SMS Logs
         </h1>
+
         <div class="grow px-4 py-2">
             <DataTable
                 :data="list"
-                haveActionButton="true"
+                haveActionButton="false"
                 :actionButtons="actionButtons"
                 :dataFields="dtColumns"
-                :dataHeaders="[
-                    'Name',
-                    'Address',
-                    'Contact Person',
-                    'Contact no.',
-                    'Email',
-                ]"
+                :dataHeaders="['Message', 'Remarks', 'API response']"
                 id="id"
                 @selectAll="selectAll"
                 @selectRow="selectRow"
@@ -33,20 +28,13 @@
                     <div
                         class="flex flex-col lg:flex-row w-full items-center space-y-2"
                     >
-                        <div class="w-full flex lg:flex-1">
-                            <Link
-                                href="/companies/form/add"
-                                class="flex px-4 py-4 text-lg bg-navy hover:bg-navy-light shadow-lg rounded-lg text-white space-x-4 items-center"
-                            >
-                                <span class="tracking-wider">Add Company</span>
-                            </Link>
-                        </div>
+                        <div class="w-full flex lg:flex-1 space-x-2"></div>
 
                         <DtSearch
                             class="flex-1 border-b border-gray-500"
                             @search="filterList"
                             @refresh="refreshList"
-                            placeholder="Search Company"
+                            placeholder="Search SmsLog"
                             v-model="lookUp"
                         />
                     </div>
@@ -94,6 +82,8 @@ import DtPagination from "../components/datatable/DtPagination";
 import DtButton from "../components/datatable/DtButton";
 import DtSearch from "../components/datatable/DtSearch";
 import DtPageLimit from "../components/datatable/DtPageLimit";
+import Button from "../components/Button";
+import InputField from "../components/InputField";
 import { ref, reactive, onMounted, computed } from "vue";
 import { PAGE_LIMIT } from "../constants";
 
@@ -109,14 +99,21 @@ export default {
         DtButton,
         DtSearch,
         DtPageLimit,
+        Button,
+        InputField,
     },
-    setup() {
+    props: {
+        auth: Object,
+        errors: Object,
+        flash: Object,
+    },
+    setup({ auth }) {
         /**
          * initialize state management
          */
         const store = useStore();
 
-        let currentUrl = ref("/companies?page=1");
+        let currentUrl = ref("/smslogs?page=1");
         let rowCounts = ref(5);
         let lookUp = ref("");
         let selectedRows = ref([]);
@@ -126,32 +123,20 @@ export default {
             params: {
                 paginate: 5,
                 search: "",
-                orderBy: "company_name",
+                orderBy: "created_at",
             },
         });
 
         const actionButtons = [
             {
-                icon: "EditIcon",
+                icon: "EyeIcon",
                 color: "text-white",
                 action: "edit",
-                route: "/companies/",
-            },
-            {
-                icon: "RemoveIcon",
-                color: "text-white",
-                action: "remove",
-                route: "",
+                route: "/smslogs/",
             },
         ];
 
-        const dtColumns = [
-            "company_name",
-            "address",
-            "contact_person",
-            "contact_no",
-            "email",
-        ];
+        const dtColumns = ["message", "remarks", "api_response"];
 
         /**
          * api call on mounted
@@ -164,11 +149,10 @@ export default {
          * API request to get list of record
          */
         function getList() {
-            // Inertia.get("/companies/get-list/all", dtOptions);
             apiService
-                .get("/companies/get-list/all", dtOptions)
+                .get("/smslogs/get-list/all", dtOptions)
                 .then((response) => {
-                    store.dispatch("loadCompanyList", response.data);
+                    store.dispatch("loadSmsLogList", response.data);
                 })
                 .catch((errors) => {
                     console.log("Errors", errors);
@@ -194,7 +178,7 @@ export default {
             apiService
                 .get(nextPage)
                 .then((response) => {
-                    store.dispatch("loadCompanyList", response.data);
+                    store.dispatch("loadSmsLogList", response.data);
                 })
                 .catch((errors) => {
                     console.log("Errores", errors);
@@ -211,7 +195,7 @@ export default {
          */
         const selectAll = (selectedAll) => {
             let selectAllRows = selectedAll;
-            list.value = store.getters.getCompanyList;
+            list.value = store.getters.getSmsLogList;
             list.value.forEach((item) => {
                 const index = selectedRows.value.indexOf(item.id);
                 if (selectAllRows) {
@@ -257,12 +241,12 @@ export default {
         const filterList = () => {
             dtOptions.params.search = lookUp.value;
             apiService
-                .get("/companies/get-list/all", dtOptions)
+                .get("/smslogs/get-list/all", dtOptions)
                 .then((response) => {
-                    store.dispatch("loadCompanyList", response.data);
+                    store.dispatch("loadSmsLogList", response.data);
                 })
                 .catch((errors) => {
-                    console.log("Errores", errors);
+                    console.log("Errors", errors);
                     Swal.fire({
                         title: "System Error",
                         text: `Please contact system administrator`,
@@ -274,10 +258,18 @@ export default {
         /**
          * remove confirmation
          */
-        const removeConfirmation = (company) => {
+        const removeConfirmation = (record) => {
+            if (auth.user?.id !== record.user_id) {
+                return Swal.fire({
+                    title: "Opps",
+                    text: `You can only remove department that belongs to you`,
+                    icon: "warning",
+                });
+            }
+
             Swal.fire({
                 title: "Are you sure you want to remove this?",
-                html: `Company : <b>${company.company_name} </b>`,
+                html: `SmsLog : <b>${record.department_name} </b>`,
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
@@ -285,7 +277,7 @@ export default {
                 confirmButtonText: "Yes, remove it!",
             }).then((result) => {
                 if (result.isConfirmed) {
-                    removeRecord(company);
+                    removeRecord(record);
                 }
             });
         };
@@ -295,7 +287,7 @@ export default {
          * remove category
          */
         function removeRecord(record) {
-            Inertia.delete(`companies/${record.id}`);
+            Inertia.delete(`smslogs/${record.id}`);
             getList();
         }
 
@@ -311,9 +303,9 @@ export default {
         return {
             actionButtons,
             dtColumns,
-            list: computed(() => store.getters.getCompanyList),
-            meta: computed(() => store.getters.getCompanyMeta),
-            links: computed(() => store.getters.getCompanyLinks),
+            list: computed(() => store.getters.getSmsLogList),
+            meta: computed(() => store.getters.getSmsLogMeta),
+            links: computed(() => store.getters.getSmsLogLinks),
             selectAll,
             selectRow,
             changePageLength,

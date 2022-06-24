@@ -19,6 +19,7 @@
                     'Emp. Code',
                     'Name',
                     'Position',
+                    'Mobile no.',
                     'Department',
                     'Company',
                 ]"
@@ -154,6 +155,7 @@ export default {
             "emp_code",
             "fullname",
             "position",
+            "mobile_no",
             "department",
             "company",
         ];
@@ -216,7 +218,7 @@ export default {
          */
         const selectAll = (selectedAll) => {
             let selectAllRows = selectedAll;
-            list.value = store.getters.getCategoryList;
+            list.value = store.getters.getEmployeeList;
             list.value.forEach((item) => {
                 const index = selectedRows.value.indexOf(item.id);
                 if (selectAllRows) {

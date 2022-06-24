@@ -29,7 +29,8 @@ class EmployeeRequest extends FormRequest
             "emp_code" => "required|max:195|unique:employees,emp_code,".$id,
             "first_name" => "required|max:195",
             "last_name" => "required|max:195",
-            "position" => "required|max:195"
+            "position" => "required|max:195",
+            "mobile_no" => "required|max:15|unique:employees,mobile_no,".$id,
         ];
     }
 }
