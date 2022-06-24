@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    @csrf()
     @routes
     <link href="{{ asset(mix('css/app.css')) }}" rel="stylesheet">
     <script src="{{ asset(mix('js/manifest.js')) }}" defer></script>
