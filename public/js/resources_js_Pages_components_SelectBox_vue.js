@@ -41,8 +41,15 @@ var _hoisted_4 = {
   "class": "text-sm px-4 text-gray-500 absolute right-0 bottom-0"
 };
 var _hoisted_5 = ["placeholder"];
-var _hoisted_6 = ["value", "selected"];
-var _hoisted_7 = {
+
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  key: "blank"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_7 = ["value", "selected"];
+var _hoisted_8 = {
   key: 0,
   "class": "text-red-600 mt-2"
 };
@@ -63,19 +70,19 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return _ctx.$emit('update:modelValue', $event.target.value);
     }),
     placeholder: $props.placeholder
-  }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.options, function (option) {
+  }, [_hoisted_6, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.options, function (option) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
       key: option[$props.valueOption],
       value: option[$props.valueOption],
       selected: option[$props.valueOption] === $props.defaultValue
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(option[$props.labelOption]), 9
     /* TEXT, PROPS */
-    , _hoisted_6);
+    , _hoisted_7);
   }), 128
   /* KEYED_FRAGMENT */
   ))], 40
   /* PROPS, HYDRATE_EVENTS */
-  , _hoisted_5), ((_$props$errorMessage = $props.errorMessage) !== null && _$props$errorMessage !== void 0 ? _$props$errorMessage : null) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.errorMessage), 1
+  , _hoisted_5), ((_$props$errorMessage = $props.errorMessage) !== null && _$props$errorMessage !== void 0 ? _$props$errorMessage : null) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.errorMessage), 1
   /* TEXT */
   )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
 }

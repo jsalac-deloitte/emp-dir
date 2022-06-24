@@ -30,4 +30,13 @@ class DepartmentService extends BaseService
         $this->modelResource = "App\Http\Resources\DepartmentResource";
 
     }
+
+    public function getCompanyDepartments(int $company_id)
+    {
+        return $this->model
+            ->with('company')
+            ->whereRelation('company', 'companies.id', $company_id)
+            ->get();
+        
+    }
 }

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\CompanyController;
 use App\Http\Controllers\Web\UserController;
 use App\Http\Controllers\Web\DepartmentController;
+use App\Http\Controllers\Web\EmployeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -91,7 +92,29 @@ Route::middleware(['auth'])->group(function() {
 
             //listing
             Route::get("/departments/get-list/all", "all")->name("get-list");
-            Route::get("/departments/get-all/no-pagination", "allNoPagination")->name("listNoPagination");
+            Route::get("/departments/get-all/no-pagination/{company_id}", "getCompanyDepartments")->name("listNoPagination");
+    });
+
+    /**
+     * Employee routes
+     */
+    Route::as('employees.')
+        ->controller(EmployeeController::class)
+        ->group(function () {
+            Route::get('/employees', function () {
+                return Inertia::render('employee/index');
+            })->name("display");
+            Route::get('/employees/form/add', function () {
+                return Inertia::render('employee/form');
+            })->name("form");
+            Route::post('/employees', "store")->name("store");
+            Route::get('/employees/{id}', "get")->name("get");
+            Route::patch('/employees/{id}', "update")->name("update");
+            Route::delete('/employees/{id}', "destroy")->name("delete");
+
+            //listing
+            Route::get("/employees/get-list/all", "all")->name("get-list");
+            Route::get("/employees/get-all/no-pagination", "allNoPagination")->name("listNoPagination");
     });
 
 

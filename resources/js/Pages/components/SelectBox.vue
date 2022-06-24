@@ -15,6 +15,7 @@
             @change="$emit('update:modelValue', $event.target.value)"
             :placeholder="placeholder"
         >
+            <option key="blank"></option>
             <option
                 v-for="option in options"
                 :key="option[valueOption]"

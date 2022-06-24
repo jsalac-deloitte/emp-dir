@@ -54,25 +54,25 @@ __webpack_require__.r(__webpack_exports__);
   },
   setup: function setup() {
     var NAVIGATIONS = [{
-      icon: _icons_group_icon__WEBPACK_IMPORTED_MODULE_2__["default"],
-      link: "/departments",
-      title: "Department list",
-      label: "Departments"
-    }, {
       icon: _icons_collection_icon__WEBPACK_IMPORTED_MODULE_1__["default"],
       link: "/companies",
       title: "Company list",
       label: "Companies"
     }, {
-      icon: _icons_group_icon__WEBPACK_IMPORTED_MODULE_2__["default"],
-      link: "/employees",
-      title: "Employee list",
-      label: "Employees"
-    }, {
       icon: _icons_user_icon__WEBPACK_IMPORTED_MODULE_3__["default"],
       link: "/users",
       title: "User list",
       label: "Users"
+    }, {
+      icon: _icons_group_icon__WEBPACK_IMPORTED_MODULE_2__["default"],
+      link: "/departments",
+      title: "Department list",
+      label: "Departments"
+    }, {
+      icon: _icons_group_icon__WEBPACK_IMPORTED_MODULE_2__["default"],
+      link: "/employees",
+      title: "Employee list",
+      label: "Employees"
     }, {
       icon: _icons_profile_icon__WEBPACK_IMPORTED_MODULE_4__["default"],
       link: "/profile",
@@ -219,7 +219,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "flex flex-col h-full py-4 px-2 bg-network bg-no-repeat bg-cover bg-center"
+  "class": "flex flex-col h-full py-4 px-2 bg-network bg-no-repeat bg-cover bg-center items-center"
 };
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
@@ -229,7 +229,7 @@ var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 );
 
 var _hoisted_3 = {
-  "class": "grow px-4 py-2"
+  "class": "flex grow px-4 py-2 max-w-2xl w-full items-center"
 };
 var _hoisted_4 = {
   "class": "w-full flex flex-col space-y-2"

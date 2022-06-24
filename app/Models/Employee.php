@@ -14,6 +14,13 @@ class Employee extends Model
 
     public $fillable = ["emp_code", "first_name", "last_name", "middle_name", "position", "company_id", "department_id"];
 
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = ['fullname'];
+
     public function department()
     {
         return $this->belongsTo(Department::class);
@@ -22,5 +29,10 @@ class Employee extends Model
     public function company()
     {
         return $this->belongsTo(Company::class);
+    }
+
+    public function getFullnameAttribute()
+    {
+        return $this->last_name .", ".  $this->first_name . " " . substr($this->middle_name,0,1) . ".";
     }
 }

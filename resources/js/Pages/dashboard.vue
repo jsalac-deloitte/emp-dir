@@ -1,11 +1,11 @@
 <template lang="">
     <div
-        class="flex flex-col h-full py-4 px-2 bg-network bg-no-repeat bg-cover bg-center"
+        class="flex flex-col h-full py-4 px-2 bg-network bg-no-repeat bg-cover bg-center items-center"
     >
         <h1 class="w-full text-2xl font-bold text-secondary text-center">
             Dashboard
         </h1>
-        <div class="grow px-4 py-2">
+        <div class="flex grow px-4 py-2 max-w-2xl w-full items-center">
             <ul class="w-full flex flex-col space-y-2">
                 <li
                     v-for="nav in NAVIGATIONS"
@@ -41,22 +41,10 @@ export default {
     setup() {
         const NAVIGATIONS = [
             {
-                icon: groupIcon,
-                link: "/departments",
-                title: "Department list",
-                label: "Departments",
-            },
-            {
                 icon: collectionIcon,
                 link: "/companies",
                 title: "Company list",
                 label: "Companies",
-            },
-            {
-                icon: groupIcon,
-                link: "/employees",
-                title: "Employee list",
-                label: "Employees",
             },
             {
                 icon: userIcon,
@@ -64,6 +52,19 @@ export default {
                 title: "User list",
                 label: "Users",
             },
+            {
+                icon: groupIcon,
+                link: "/departments",
+                title: "Department list",
+                label: "Departments",
+            },
+            {
+                icon: groupIcon,
+                link: "/employees",
+                title: "Employee list",
+                label: "Employees",
+            },
+
             {
                 icon: profileIcon,
                 link: "/profile",

@@ -13,7 +13,7 @@ class EmployeeService extends BaseService
         $this->model = $model;
 
 		//will be use for data table searching
-		$this->searchableColumns = $this->model->getFillable();
+		$this->searchableColumns = array_merge($this->model->getFillable(), ["company.company_name", "department.department_name"]);
 
 		// default value id
 		$this->defaultSortKey =  ["last_name", "first_name"] ;
