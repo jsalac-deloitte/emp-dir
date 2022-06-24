@@ -4,6 +4,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\CompanyController;
 use App\Http\Controllers\Web\UserController;
+use App\Http\Controllers\Web\DepartmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,7 +69,31 @@ Route::middleware(['auth'])->group(function() {
 
             //listing
             Route::get("/users/get-list/all", "all")->name("get-list");
+            Route::get("/users/get-all/no-pagination", "allNoPagination")->name("listNoPagination");
     });
+
+    /**
+     * department routes
+     */
+    Route::as('departments.')
+        ->controller(DepartmentController::class)
+        ->group(function () {
+            Route::get('/departments', function () {
+                return Inertia::render('department/index');
+            })->name("display");
+            Route::get('/departments/form/add', function () {
+                return Inertia::render('department/form');
+            })->name("form");
+            Route::post('/departments', "store")->name("store");
+            Route::get('/departments/{id}', "get")->name("get");
+            Route::patch('/departments/{id}', "update")->name("update");
+            Route::delete('/departments/{id}', "destroy")->name("delete");
+
+            //listing
+            Route::get("/departments/get-list/all", "all")->name("get-list");
+            Route::get("/departments/get-all/no-pagination", "allNoPagination")->name("listNoPagination");
+    });
+
 
 
 });

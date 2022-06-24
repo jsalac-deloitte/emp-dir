@@ -19,6 +19,8 @@ class DepartmentResource extends JsonResource
             "department_name" => $this->department_name,
             "user" => $this->user->name,
             "user_id" => $this->user->id,
+            "company" => $this->company->company_name,
+            "company_id" => $this->user->company_id,
             "company_name" => $this->user->company->company_name,
             "company_id" => $this->user->company->id,
             "created_at" => date_format($this->created_at,"Y-M-d H:i:s a"),

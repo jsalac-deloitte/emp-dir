@@ -1302,6 +1302,36 @@ var map = {
 		"/js/vendor",
 		"resources_js_Pages_dashboard_vue"
 	],
+	"./department": [
+		"./resources/js/Pages/department/index.vue",
+		"/js/vendor",
+		"resources_js_Pages_department_index_vue"
+	],
+	"./department/": [
+		"./resources/js/Pages/department/index.vue",
+		"/js/vendor",
+		"resources_js_Pages_department_index_vue"
+	],
+	"./department/form": [
+		"./resources/js/Pages/department/form.vue",
+		"/js/vendor",
+		"resources_js_Pages_department_form_vue"
+	],
+	"./department/form.vue": [
+		"./resources/js/Pages/department/form.vue",
+		"/js/vendor",
+		"resources_js_Pages_department_form_vue"
+	],
+	"./department/index": [
+		"./resources/js/Pages/department/index.vue",
+		"/js/vendor",
+		"resources_js_Pages_department_index_vue"
+	],
+	"./department/index.vue": [
+		"./resources/js/Pages/department/index.vue",
+		"/js/vendor",
+		"resources_js_Pages_department_index_vue"
+	],
 	"./icons/AddIcon": [
 		"./resources/js/Pages/icons/AddIcon.vue",
 		"/js/vendor",
