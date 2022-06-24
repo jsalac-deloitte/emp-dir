@@ -16,13 +16,17 @@ class EmployeeResource extends JsonResource
     {
         return [
             "id" => $this->id,
+            "emp_code" => $this->emp_code,
             "last_name" => $this->last_name,
             "first_name" => $this->first_name,
             "middle_name" => $this->middle_name,
+            "fullname" => $this->fullname,
+            "position" => $this->position,
+            "email" => $this->email,
             "department_id" => $this->department_id,
-            "department_name" => $this->department->department_name,
+            "department" => $this->department->department_name,
             "company_id" => $this->company->id,
-            "company_name" => $this->company->company_name,
+            "company" => $this->company->company_name,
             "created_at" => date_format($this->created_at,"Y-M-d H:i:s a"),
             "updated_at" => date_format($this->updated_at,"Y-M-d H:i:s a"),
             "status" => $this->deleted_at ? "Deleted" : "Active"

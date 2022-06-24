@@ -617,7 +617,7 @@ var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 );
 
 var _hoisted_2 = {
-  "class": "max-w-[98%] mx-auto bg-network bg-no-repeat bg-center bg-cover h-auto"
+  "class": "max-w-[98%] mx-auto bg-network bg-no-repeat bg-center bg-cover h-full"
 };
 var _hoisted_3 = {
   "class": "w-full text-2xl font-bold text-secondary text-center pt-2"
