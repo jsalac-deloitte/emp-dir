@@ -15,6 +15,8 @@ module.exports = {
             colors: {
                 primary: "#90CAF9",
                 secondary: "#37474F",
+                navy: "#064069",
+                "navy-light": "#085d99",
             },
         },
     },

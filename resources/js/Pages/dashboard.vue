@@ -27,6 +27,7 @@
         </div>
     </div>
 </template>
+
 <script>
 import mainLayout from "./layout/main-layout";
 import collectionIcon from "./icons/collection-icon";
