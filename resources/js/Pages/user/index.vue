@@ -1,13 +1,13 @@
 <template lang="">
     <Head>
-        <title>Companies</title>
-        <meta name="description" content="Company listing" />
+        <title>Users</title>
+        <meta name="description" content="User listing" />
     </Head>
     <div
         class="flex flex-col h-full py-4 px-2 bg-network bg-no-repeat bg-cover bg-center"
     >
         <h1 class="w-full text-2xl font-bold text-secondary text-center">
-            COMPANIES
+            USERS
         </h1>
         <div class="grow px-4 py-2">
             <DataTable
@@ -15,13 +15,7 @@
                 haveActionButton="true"
                 :actionButtons="actionButtons"
                 :dataFields="dtColumns"
-                :dataHeaders="[
-                    'Name',
-                    'Address',
-                    'Contact Person',
-                    'Contact no.',
-                    'Email',
-                ]"
+                :dataHeaders="['Name', 'Email', 'Company', 'User Type']"
                 id="id"
                 @selectAll="selectAll"
                 @selectRow="selectRow"
@@ -35,10 +29,10 @@
                     >
                         <div class="w-full flex lg:flex-1">
                             <Link
-                                href="/companies/form/add"
+                                href="/users/form/add"
                                 class="flex px-4 py-4 text-lg bg-navy hover:bg-navy-light shadow-lg rounded-lg text-white space-x-4 items-center"
                             >
-                                <span class="tracking-wider">Add Company</span>
+                                <span class="tracking-wider">Add User</span>
                             </Link>
                         </div>
 
@@ -46,7 +40,7 @@
                             class="flex-1 border-b border-gray-500"
                             @search="filterList"
                             @refresh="refreshList"
-                            placeholder="Search Company"
+                            placeholder="Search User"
                             v-model="lookUp"
                         />
                     </div>
@@ -110,13 +104,18 @@ export default {
         DtSearch,
         DtPageLimit,
     },
-    setup() {
+    props: {
+        auth: Object,
+        errors: Object,
+        flash: Object,
+    },
+    setup({ auth }) {
         /**
          * initialize state management
          */
         const store = useStore();
 
-        let currentUrl = ref("/companies?page=1");
+        let currentUrl = ref("/users?page=1");
         let rowCounts = ref(5);
         let lookUp = ref("");
         let selectedRows = ref([]);
@@ -126,7 +125,7 @@ export default {
             params: {
                 paginate: 5,
                 search: "",
-                orderBy: "company_name",
+                orderBy: "name",
             },
         });
 
@@ -135,7 +134,7 @@ export default {
                 icon: "EditIcon",
                 color: "text-white",
                 action: "edit",
-                route: "/companies/",
+                route: "/users/",
             },
             {
                 icon: "RemoveIcon",
@@ -145,13 +144,7 @@ export default {
             },
         ];
 
-        const dtColumns = [
-            "company_name",
-            "address",
-            "contact_person",
-            "contact_no",
-            "email",
-        ];
+        const dtColumns = ["name", "email", "company", "user_type"];
 
         /**
          * api call on mounted
@@ -164,11 +157,11 @@ export default {
          * API request to get list of record
          */
         function getList() {
-            // Inertia.get("/companies/get-list/all", dtOptions);
+            // Inertia.get("/users/get-list/all", dtOptions);
             apiService
-                .get("/companies/get-list/all", dtOptions)
+                .get("/users/get-list/all", dtOptions)
                 .then((response) => {
-                    store.dispatch("loadCompanyList", response.data);
+                    store.dispatch("loadUserList", response.data);
                 })
                 .catch((errors) => {
                     console.log("Errors", errors);
@@ -194,7 +187,7 @@ export default {
             apiService
                 .get(nextPage)
                 .then((response) => {
-                    store.dispatch("loadCompanyList", response.data);
+                    store.dispatch("loadUserList", response.data);
                 })
                 .catch((errors) => {
                     console.log("Errores", errors);
@@ -257,12 +250,12 @@ export default {
         const filterList = () => {
             dtOptions.params.search = lookUp.value;
             apiService
-                .get("/companies/get-list/all", dtOptions)
+                .get("/users/get-list/all", dtOptions)
                 .then((response) => {
-                    store.dispatch("loadCompanyList", response.data);
+                    store.dispatch("loadUserList", response.data);
                 })
                 .catch((errors) => {
-                    console.log("Errores", errors);
+                    console.log("Errors", errors);
                     Swal.fire({
                         title: "System Error",
                         text: `Please contact system administrator`,
@@ -274,10 +267,18 @@ export default {
         /**
          * remove confirmation
          */
-        const removeConfirmation = (company) => {
+        const removeConfirmation = (record) => {
+            if (auth.user?.id === record.id) {
+                return Swal.fire({
+                    title: "Opps",
+                    text: `You cannot remove your own account`,
+                    icon: "warning",
+                });
+            }
+
             Swal.fire({
                 title: "Are you sure you want to remove this?",
-                html: `Company : <b>${company.company_name} </b>`,
+                html: `User : <b>${record.name} </b>`,
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
@@ -285,7 +286,7 @@ export default {
                 confirmButtonText: "Yes, remove it!",
             }).then((result) => {
                 if (result.isConfirmed) {
-                    removeRecord(company);
+                    removeRecord(record);
                 }
             });
         };
@@ -295,7 +296,7 @@ export default {
          * remove category
          */
         function removeRecord(record) {
-            Inertia.delete(`companies/${record.id}`);
+            Inertia.delete(`users/${record.id}`);
             getList();
         }
 
@@ -311,9 +312,9 @@ export default {
         return {
             actionButtons,
             dtColumns,
-            list: computed(() => store.getters.getCompanyList),
-            meta: computed(() => store.getters.getCompanyMeta),
-            links: computed(() => store.getters.getCompanyLinks),
+            list: computed(() => store.getters.getUserList),
+            meta: computed(() => store.getters.getUserMeta),
+            links: computed(() => store.getters.getUserLinks),
             selectAll,
             selectRow,
             changePageLength,

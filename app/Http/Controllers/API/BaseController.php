@@ -15,6 +15,24 @@ class BaseController extends Controller
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+
+    /**
+     * Display a listing of the resource with no pagination.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function allNoPagination(Request $request)
+    {
+        // return $request->columns;
+        try {
+            return $this->modelService->getAllNoPagination($request->columns);
+         } catch(\Exception $ex) {
+            Log::info($ex->getMessage());
+            return response()->json(["message" => "Errors occurred please contact system administrator"], 500);
+        }
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -42,7 +60,8 @@ class BaseController extends Controller
 
         } catch(\Exception $ex) {
             DB::rollback();
-            return response()->json(["message" => $ex->getMessage()]);
+            Log::info($ex->getMessage());
+            return response()->json(["message" => "Errors occurred please contact system administrator"], 500);
         }
     }
 
@@ -62,9 +81,9 @@ class BaseController extends Controller
             DB::commit();
             return $response;
         } catch(\Exception $ex) {
-            Log::info($ex);
+            Log::info($ex->getMessage());
             DB::rollback();
-            return response()->json(["message" => $ex->getMessage()]);
+            return response()->json(["message" => "Errors occurred please contact system administrator"], 500);
         }
     }
 
@@ -80,9 +99,11 @@ class BaseController extends Controller
             $record = $this->modelService->find($id);
             return response()->json($record, 200);
         }catch(ModelNotFoundException $ex) {
+            Log::info($ex->getMessage());
             return response()->json(["message" => "Record not Found!"], 404);
         }  catch(\Exception $ex) {
-            return response()->json(["message" => $ex->getMessage()]);
+            Log::info($ex->getMessage());
+            return response()->json(["message" => "Errors occurred please contact system administrator"], 500);
         }
     }
 
@@ -105,7 +126,8 @@ class BaseController extends Controller
         }catch(ModelNotFoundException $ex) {
             return response()->json(["message" => "Record not Found!"], 404);
         }  catch(\Exception $ex) {
-            return response()->json(["message" => $ex->getMessage()]);
+            Log::info($ex->getMessage());
+            return response()->json(["message" => "Errors occurred please contact system administrator"], 500);
         }
     }
 
@@ -128,7 +150,8 @@ class BaseController extends Controller
         }catch(ModelNotFoundException $ex) {
             return response()->json(["message" => "Record not Found!"], 404);
         }  catch(\Exception $ex) {
-            return response()->json(["message" => $ex->getMessage()]);
+            Log::info($ex->getMessage());
+            return response()->json(["message" => "Errors occurred please contact system administrator"], 500);
         }
     }
 

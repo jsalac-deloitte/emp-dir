@@ -33,7 +33,7 @@ const CompanyStore = {
 
         getCompanyMeta: (state) => state.companyMeta,
 
-        getCompanyLInks: (state) => state.companyLinks,
+        getCompanyLinks: (state) => state.companyLinks,
 
         getCompany: (state) => state.company,
     },

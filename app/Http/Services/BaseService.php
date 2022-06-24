@@ -25,6 +25,11 @@ class BaseService
          $this->searchableColumns = $this->model->getFillable();
     }
 
+    public function getAllNoPagination(string $columns = "*")
+    {
+        return $this->model->selectRaw($columns)->orderBy($this->defaultSortKey[0])->get();
+    }
+
     //get the list of records with pagination
     public function getAll($request)
     {

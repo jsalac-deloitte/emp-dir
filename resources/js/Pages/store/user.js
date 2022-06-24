@@ -29,7 +29,7 @@ const UserStore = {
 
         getUserMeta: (state) => state.userMeta,
 
-        getUserLInks: (state) => state.userLinks,
+        getUserLinks: (state) => state.userLinks,
 
         getUser: (state) => state.user,
     },

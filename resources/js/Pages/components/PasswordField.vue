@@ -21,6 +21,7 @@
                 class="w-full px-2 py-2 placeholder-gray-300 focus:outline-none focus:no-underline"
                 :value="modelValue"
                 @input="$emit('update:modelValue', $event.target.value)"
+                :required="required"
             />
             <div
                 className=" absolute right-2"
@@ -101,6 +102,7 @@ export default {
         "errorMessage",
         "name",
         "type",
+        "required",
     ],
 };
 </script>

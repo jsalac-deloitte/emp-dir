@@ -1,8 +1,6 @@
 <template lang="">
-    <div
-        class="grow bg-white rounded-xl py-10 px-4 max-w-2xl xl:max-w-lg backdrop-blur-sm bg-opacity-20 xl:backdrop-blur-none xl:bg-opacity-100 xl:shadow-lg"
-    >
-        <div class="flex flex-col space-y-6 w-full items-center">
+    <div class="grow bg-white rounded-xl py-10 px-4 max-w-2xl xl:max-w-lg">
+        <div class="flex flex-col space-y-6 w-full items-center text-navy">
             <img src="/images/mylogo.png" alt="my logo" />
             <form @submit.prevent="submit" class="w-full max-w-md">
                 <div class="flex flex-col px-4 w-full space-y-2 mt-4">
@@ -26,7 +24,7 @@
                 <div class="flex flex-col px-4 mt-20">
                     <button
                         type="submit"
-                        class="bg-primary text-white px-2 py-3 rounded-xl tracking-wider text-xl"
+                        class="bg-navy text-white px-2 py-3 rounded-xl tracking-wider text-xl"
                     >
                         Log in
                     </button>
@@ -35,7 +33,7 @@
             <div>
                 <p class="text-center">
                     Forgot your password?
-                    <Link href="forgot-password" class="text-primary"
+                    <Link href="forgot-password" class="text-navy underline"
                         >Click here</Link
                     >
                 </p>

@@ -98,7 +98,7 @@ __webpack_require__.r(__webpack_exports__);
       showPassword: showPassword
     };
   },
-  props: ["modelValue", "placeholder", "label", "type", "helper", "errorMessage", "name", "type"]
+  props: ["modelValue", "placeholder", "label", "type", "helper", "errorMessage", "name", "type", "required"]
 });
 
 /***/ }),
@@ -130,10 +130,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "grow bg-white rounded-xl py-10 px-4 max-w-2xl xl:max-w-lg backdrop-blur-sm bg-opacity-20 xl:backdrop-blur-none xl:bg-opacity-100 xl:shadow-lg"
+  "class": "grow bg-white rounded-xl py-10 px-4 max-w-2xl xl:max-w-lg"
 };
 var _hoisted_2 = {
-  "class": "flex flex-col space-y-6 w-full items-center"
+  "class": "flex flex-col space-y-6 w-full items-center text-navy"
 };
 
 var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
@@ -154,7 +154,7 @@ var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
   "class": "flex flex-col px-4 mt-20"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
-  "class": "bg-primary text-white px-2 py-3 rounded-xl tracking-wider text-xl"
+  "class": "bg-navy text-white px-2 py-3 rounded-xl tracking-wider text-xl"
 }, " Log in ")], -1
 /* HOISTED */
 );
@@ -205,7 +205,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* HYDRATE_EVENTS */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
     href: "forgot-password",
-    "class": "text-primary"
+    "class": "text-navy underline"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [_hoisted_9];
@@ -300,7 +300,7 @@ var _hoisted_4 = {
 var _hoisted_5 = {
   className: "flex items-center  bg-white border border-gray-500 rounded-xl px-2 py-1 relative marker:focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
 };
-var _hoisted_6 = ["placeholder", "value"];
+var _hoisted_6 = ["placeholder", "value", "required"];
 var _hoisted_7 = {
   className: " absolute right-2",
   title: "click to show or hide password"
@@ -362,7 +362,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     value: $props.modelValue,
     onInput: _cache[0] || (_cache[0] = function ($event) {
       return _ctx.$emit('update:modelValue', $event.target.value);
-    })
+    }),
+    required: $props.required
   }, null, 40
   /* PROPS, HYDRATE_EVENTS */
   , _hoisted_6), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {

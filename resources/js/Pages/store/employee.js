@@ -33,7 +33,7 @@ const EmployeeStore = {
 
         getEmployeeMeta: (state) => state.employeeMeta,
 
-        getEmployeeLInks: (state) => state.employeeLinks,
+        getEmployeeLinks: (state) => state.employeeLinks,
 
         getEmployee: (state) => state.employee,
     },
