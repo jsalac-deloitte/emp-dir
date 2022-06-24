@@ -14,7 +14,7 @@ class DepartmentService extends BaseService
         $this->model = $model;
 
 		//will be use for data table searching
-		$this->searchableColumns = $this->model->getFillable();
+		$this->searchableColumns = array_merge($this->model->getFillable(), ["company.company_name", "user.name"]);
 
 		// default value id
 		$this->defaultSortKey =  ["department_name"] ;

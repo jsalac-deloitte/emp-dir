@@ -4,7 +4,9 @@
         <meta name="description" content="Company" />
     </Head>
 
-    <div class="max-w-[98%] mx-auto bg-network bg-no-repeat bg-center bg-cover">
+    <div
+        class="max-w-[98%] mx-auto bg-network bg-no-repeat bg-center bg-cover h-full"
+    >
         <h1 class="w-full text-2xl font-bold text-secondary text-center mt-2">
             {{ pageTitle }}
         </h1>

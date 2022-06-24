@@ -17,64 +17,26 @@
                         class="bg-gray-50 rounded-xl px-6 py-4 space-y-4 text-navy"
                     >
                         <SelectBox
-                            label="Company"
-                            :options="companies"
-                            placeholder="Select Company"
-                            helper="Choose company for the user"
+                            label="User"
+                            :options="users"
+                            placeholder="Select User"
+                            helper="Choose User for the department"
                             class="text-navy"
-                            labelOption="company_name"
+                            labelOption="name"
                             valueOption="id"
-                            :defaultValue="form.company_id"
-                            v-model="form.company_id"
+                            :defaultValue="form.user_id"
+                            v-model="form.user_id"
+                            :errorMessage="errors.user_id"
                         />
 
                         <InputField
                             type="text"
-                            name="name"
-                            label="Fullname"
-                            placeholder="Last name, First Name, M.I"
-                            helper="Last name, First Name, M.I"
-                            v-model="form.name"
-                            :errorMessage="errors.name"
-                        />
-
-                        <InputField
-                            type="text"
-                            name="user_type"
-                            label="User type"
-                            placeholder="User type"
-                            helper="Admin, Manager etc."
-                            v-model="form.user_type"
-                            :errorMessage="errors.user_type"
-                        />
-
-                        <InputField
-                            type="email"
-                            name="email"
-                            label="Email"
-                            placeholder="Email address"
-                            helper="Valid email"
-                            v-model="form.email"
-                            :errorMessage="errors.email"
-                            required="true"
-                        />
-
-                        <PasswordField
-                            name="password"
-                            label="Password"
-                            placeholder="Password"
-                            helper="min. 6 characters"
-                            v-model="form.password"
-                            :errorMessage="errors.password"
-                        />
-
-                        <PasswordField
-                            name="confirm_password"
-                            label="Confirm password"
-                            placeholder="Confirm password"
-                            helper="same with password"
-                            v-model="form.confirm_password"
-                            :errorMessage="errors.confirm_password"
+                            name="department_name"
+                            label="Department name"
+                            placeholder="e.g. HR, IT, Accounting, Admin"
+                            helper="HR,IT,Accounting"
+                            v-model="form.department_name"
+                            :errorMessage="errors.department_name"
                         />
                     </div>
                     <div class="flex justify-end space-x-1 px-4">
@@ -83,7 +45,7 @@
                         >
                             Submit
                         </Button>
-                        <Link href="/users">
+                        <Link href="/departments">
                             <button
                                 type="submit"
                                 class="px-4 py-3 text-white bg-red-500 rounded-md focus:bg-red-600 focus:outline-none hover:bg-red-600"
@@ -123,25 +85,21 @@ export default {
         errors: Object,
     },
     setup(props) {
-        const pageTitle = ref("New User");
-        let companies = reactive([]);
+        const pageTitle = ref("New Department");
+        let users = reactive([]);
         const form = useForm({
-            name: "",
-            email: "",
-            password: "",
-            confirm_password: "",
-            user_type: "",
+            department_name: "",
             id: null,
-            company_id: "",
+            user_id: "",
         });
 
         onMounted(async () => {
             apiService
-                .get("/companies/get-all/no-pagination", {
-                    params: { columns: "id, company_name" },
+                .get("/users/get-all/no-pagination", {
+                    params: { columns: "id, name" },
                 })
                 .then((response) => {
-                    Object.assign(companies, response.data);
+                    Object.assign(users, response.data);
                 })
                 .catch((errors) => {
                     console.log("Errors", errors);
@@ -153,16 +111,12 @@ export default {
                 });
 
             if (props.record) {
-                pageTitle.value = "Editing User";
+                pageTitle.value = "Editing Department";
                 form.id = props.record.data.id;
-                form.name = props.record.data.name;
-                form.email = props.record.data.email;
-                form.password = props.record.data.password;
-                form.confirm_password = props.record.data.confirm_password;
-                form.user_type = props.record.data.user_type;
-                form.company_id = props.record.data.company_id;
+                form.department_name = props.record.data.department_name;
+                form.user_id = props.record.data.user_id;
             } else {
-                pageTitle.value = "New User";
+                pageTitle.value = "New Department";
             }
         });
 
@@ -172,19 +126,19 @@ export default {
         }
 
         function update() {
-            form.patch(`/users/${form.id}`, {
+            form.patch(`/departments/${form.id}`, {
                 preserveScroll: true,
                 onSuccess: () => form.reset(),
             });
         }
 
         function save() {
-            form.post("/users", form, {
+            form.post("/departments", form, {
                 onSuccess: () => form.reset(),
             });
         }
 
-        return { form, pageTitle, submit, companies };
+        return { form, pageTitle, submit, users };
     },
 };
 </script>
