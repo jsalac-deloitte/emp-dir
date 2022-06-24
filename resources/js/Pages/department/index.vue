@@ -9,6 +9,24 @@
         <h1 class="w-full text-2xl font-bold text-secondary text-center">
             DEPARTMENTS
         </h1>
+        <div class="flex w-full px-4" v-if="showSms">
+            <div
+                class="space-y-4 w-full h-auto px-4 py-4 border border-400 rounded-xl max-w-xl bg-gray-100"
+            >
+                <InputField
+                    type="text"
+                    name="message"
+                    label="Message"
+                    placeholder="Type your message here..."
+                    helper=""
+                    v-model="sms.message"
+                />
+                <Button @click="sendSms" type="submit" class="bg-navy-light"
+                    >Send</Button
+                >
+            </div>
+        </div>
+
         <div class="grow px-4 py-2">
             <DataTable
                 :data="list"
@@ -27,7 +45,7 @@
                     <div
                         class="flex flex-col lg:flex-row w-full items-center space-y-2"
                     >
-                        <div class="w-full flex lg:flex-1">
+                        <div class="w-full flex lg:flex-1 space-x-2">
                             <Link
                                 href="/departments/form/add"
                                 class="flex px-4 py-4 text-lg bg-navy hover:bg-navy-light shadow-lg rounded-lg text-white space-x-4 items-center"
@@ -36,6 +54,16 @@
                                     >Add Department</span
                                 >
                             </Link>
+                            <Button
+                                href="/departments/form/add"
+                                class="flex px-4 py-4 text-lg bg-navy hover:bg-navy-light shadow-lg rounded-lg text-white space-x-4 items-center"
+                                @click="toggleSms"
+                            >
+                                <span
+                                    class="tracking-wider"
+                                    v-html="showSms ? 'Hide SMS' : 'Send SMS'"
+                                ></span>
+                            </Button>
                         </div>
 
                         <DtSearch
@@ -90,6 +118,8 @@ import DtPagination from "../components/datatable/DtPagination";
 import DtButton from "../components/datatable/DtButton";
 import DtSearch from "../components/datatable/DtSearch";
 import DtPageLimit from "../components/datatable/DtPageLimit";
+import Button from "../components/Button";
+import InputField from "../components/InputField";
 import { ref, reactive, onMounted, computed } from "vue";
 import { PAGE_LIMIT } from "../constants";
 
@@ -105,6 +135,8 @@ export default {
         DtButton,
         DtSearch,
         DtPageLimit,
+        Button,
+        InputField,
     },
     props: {
         auth: Object,
@@ -122,6 +154,13 @@ export default {
         let lookUp = ref("");
         let selectedRows = ref([]);
         let list = ref([]);
+
+        let showSms = ref(false);
+
+        let sms = reactive({
+            message: "",
+            receiver: [],
+        });
 
         let dtOptions = reactive({
             params: {
@@ -147,6 +186,13 @@ export default {
         ];
 
         const dtColumns = ["department_name", "user", "company"];
+
+        /**
+         * for sending sms
+         */
+        function toggleSms() {
+            showSms.value = !showSms.value;
+        }
 
         /**
          * api call on mounted
@@ -205,7 +251,7 @@ export default {
          */
         const selectAll = (selectedAll) => {
             let selectAllRows = selectedAll;
-            list.value = store.getters.getCategoryList;
+            list.value = store.getters.getDepartmentList;
             list.value.forEach((item) => {
                 const index = selectedRows.value.indexOf(item.id);
                 if (selectAllRows) {
@@ -310,6 +356,47 @@ export default {
             filterList();
         };
 
+        /**
+         * functiont to send sms
+         */
+        function sendSms() {
+            if (selectedRows.value.length < 1) {
+                return Swal.fire({
+                    title: "Opps",
+                    text: `Please select department receiver`,
+                    icon: "warning",
+                });
+                return;
+            }
+            Object.assign(sms.receiver, selectedRows.value);
+
+            Swal.fire({
+                title: "Send SMS?",
+                html: `All employees under the selected department(s) will receive message - continue?  </b>`,
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, send it!",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    apiService
+                        .post("/departments/send-sms-to-employees", sms)
+                        .then((response) => {
+                            console.log("response", response);
+                            return Swal.fire({
+                                title: "SMS Processing",
+                                text: `SMS is at background process`,
+                                icon: "success",
+                            });
+                        })
+                        .catch((errors) => {
+                            console.log("errors", errors);
+                        });
+                }
+            });
+        }
+
         return {
             actionButtons,
             dtColumns,
@@ -328,6 +415,10 @@ export default {
             lookUp,
             PAGE_LIMIT,
             rowCounts,
+            sms,
+            showSms,
+            toggleSms,
+            sendSms,
         };
     },
 };

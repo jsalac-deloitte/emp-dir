@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\SmsLog;
 use App\Models\Company;
 use App\Models\Department;
 use Illuminate\Database\Eloquent\Model;
@@ -12,7 +13,7 @@ class Employee extends Model
 {
     use HasFactory, SoftDeletes;
 
-    public $fillable = ["emp_code", "first_name", "last_name", "middle_name", "position", "company_id", "department_id"];
+    public $fillable = ["emp_code", "first_name", "last_name", "middle_name", "position", "company_id", "department_id" ,"mobile_no"];
 
     /**
      * The accessors to append to the model's array form.
@@ -35,4 +36,5 @@ class Employee extends Model
     {
         return $this->last_name .", ".  $this->first_name . " " . substr($this->middle_name,0,1) . ".";
     }
+
 }

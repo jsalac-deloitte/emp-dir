@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Http\Controllers\Controller;
+use Inertia\Inertia;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
@@ -32,7 +35,7 @@ class AuthController extends Controller
     {
         Session::flush();
         Auth::logout();
-        return redirect("login");
+        return Inertia::render("auth/login");
     }
 
     /**
@@ -42,7 +45,6 @@ class AuthController extends Controller
     {
         $response = $this->service->sendResetPasswordLink($request);
         if (!$response["success"]) {
-            Log::critical("---Forgot Reset link Request error----");
             Log::critical($response["message"]);
             return redirect()->back()->with('errorMessage', "Error Occured - please check it with your system administrator");
         }

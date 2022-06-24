@@ -28,4 +28,18 @@ class DepartmentController extends BaseController
             return redirect()->back()->with(["message" => "Errors occurred please contact system administrator"], 500);
         }
     }
+
+    /**
+     * send sms to employee
+     * get employees by their department id
+     */
+    public function sendSmsToEmployees(Request $request)
+    {
+        try {
+            return $this->modelService->sendSmstoEmployees($request);
+        } catch(\Exception $ex) {
+            Log::info($ex->getMessage());
+            return redirect()->back()->with(["message" => "Errors occurred please contact system administrator"], 500);
+        }
+    }
 }

@@ -200,24 +200,90 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
 /* harmony import */ var _company__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./company */ "./resources/js/Pages/store/company.js");
 /* harmony import */ var _user__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./user */ "./resources/js/Pages/store/user.js");
 /* harmony import */ var _employee__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./employee */ "./resources/js/Pages/store/employee.js");
 /* harmony import */ var _department__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./department */ "./resources/js/Pages/store/department.js");
+/* harmony import */ var _smslog__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./smslog */ "./resources/js/Pages/store/smslog.js");
 
 
 
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,vuex__WEBPACK_IMPORTED_MODULE_4__.createStore)({
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,vuex__WEBPACK_IMPORTED_MODULE_5__.createStore)({
   modules: {
     CompanyStore: _company__WEBPACK_IMPORTED_MODULE_0__["default"],
     UserStore: _user__WEBPACK_IMPORTED_MODULE_1__["default"],
     EmployeeStore: _employee__WEBPACK_IMPORTED_MODULE_2__["default"],
-    DepartmentStore: _department__WEBPACK_IMPORTED_MODULE_3__["default"]
+    DepartmentStore: _department__WEBPACK_IMPORTED_MODULE_3__["default"],
+    SmsLogStore: _smslog__WEBPACK_IMPORTED_MODULE_4__["default"]
   }
 }));
+
+/***/ }),
+
+/***/ "./resources/js/Pages/store/smslog.js":
+/*!********************************************!*\
+  !*** ./resources/js/Pages/store/smslog.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var SmsLogStore = {
+  state: {
+    smslogList: [],
+    smslogMeta: {},
+    smslogLinks: {},
+    smslogErrors: null,
+    smslog: {}
+  },
+  mutations: {
+    setSmsLogList: function setSmsLogList(state, smslogList) {
+      return state.smslogList = smslogList;
+    },
+    setSmsLogMeta: function setSmsLogMeta(state, smslogMeta) {
+      return state.smslogMeta = smslogMeta;
+    },
+    setSmsLogLink: function setSmsLogLink(state, smslogLinks) {
+      return state.smslogLinks = smslogLinks;
+    },
+    setSmsLogErrors: function setSmsLogErrors(state, smslogErrors) {
+      return state.smslogErrors = smslogErrors;
+    },
+    setSmsLog: function setSmsLog(state, smslog) {
+      return state.smslog = smslog;
+    }
+  },
+  actions: {
+    loadSmsLogList: function loadSmsLogList(_ref, payload) {
+      var commit = _ref.commit;
+      commit("setSmsLogList", payload.data);
+      commit("setSmsLogMeta", payload.meta);
+      commit("setSmsLogLink", payload.links);
+    }
+  },
+  getters: {
+    getSmsLogList: function getSmsLogList(state) {
+      return state.smslogList;
+    },
+    getSmsLogMeta: function getSmsLogMeta(state) {
+      return state.smslogMeta;
+    },
+    getSmsLogLinks: function getSmsLogLinks(state) {
+      return state.smslogLinks;
+    },
+    getSmsLog: function getSmsLog(state) {
+      return state.smslog;
+    }
+  }
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SmsLogStore);
 
 /***/ }),
 
@@ -1552,6 +1618,36 @@ var map = {
 		"/js/vendor",
 		"resources_js_Pages_layout_main-layout_vue"
 	],
+	"./smslog": [
+		"./resources/js/Pages/smslog/index.vue",
+		"/js/vendor",
+		"resources_js_Pages_smslog_index_vue"
+	],
+	"./smslog/": [
+		"./resources/js/Pages/smslog/index.vue",
+		"/js/vendor",
+		"resources_js_Pages_smslog_index_vue"
+	],
+	"./smslog/form": [
+		"./resources/js/Pages/smslog/form.vue",
+		"/js/vendor",
+		"resources_js_Pages_smslog_form_vue"
+	],
+	"./smslog/form.vue": [
+		"./resources/js/Pages/smslog/form.vue",
+		"/js/vendor",
+		"resources_js_Pages_smslog_form_vue"
+	],
+	"./smslog/index": [
+		"./resources/js/Pages/smslog/index.vue",
+		"/js/vendor",
+		"resources_js_Pages_smslog_index_vue"
+	],
+	"./smslog/index.vue": [
+		"./resources/js/Pages/smslog/index.vue",
+		"/js/vendor",
+		"resources_js_Pages_smslog_index_vue"
+	],
 	"./store": [
 		"./resources/js/Pages/store/index.js"
 	],
@@ -1581,6 +1677,12 @@ var map = {
 	],
 	"./store/index.js": [
 		"./resources/js/Pages/store/index.js"
+	],
+	"./store/smslog": [
+		"./resources/js/Pages/store/smslog.js"
+	],
+	"./store/smslog.js": [
+		"./resources/js/Pages/store/smslog.js"
 	],
 	"./store/user": [
 		"./resources/js/Pages/store/user.js"

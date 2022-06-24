@@ -92,6 +92,16 @@
                             v-model="form.position"
                             :errorMessage="errors.position"
                         />
+
+                        <InputField
+                            type="number"
+                            name="mobile_no"
+                            label="Mobile no"
+                            placeholder="Mobile no."
+                            helper="11 digit mobile no."
+                            v-model="form.mobile_no"
+                            :errorMessage="errors.mobile_no"
+                        />
                     </div>
                     <div class="flex justify-end space-x-1 px-4">
                         <Button
@@ -150,6 +160,7 @@ export default {
             position: "",
             department_id: "",
             company_id: "",
+            mobile_no: "",
             id: null,
         });
 
@@ -164,6 +175,7 @@ export default {
                 form.last_name = props.record.data.last_name;
                 form.middle_name = props.record.data.middle_name;
                 form.position = props.record.data.position;
+                form.mobile_no = props.record.data.mobile_no;
                 form.department_id = props.record.data.department_id;
                 form.company_id = props.record.data.company_id;
                 getDepartments();

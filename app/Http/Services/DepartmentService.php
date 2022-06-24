@@ -3,8 +3,10 @@
 namespace App\Http\Services;
 
 use App\Models\Department;
-use App\Http\Requests\DepartmentRequest;
 use App\Http\Services\BaseService;
+use Illuminate\Support\Facades\Log;
+use App\Events\SendSmsToDepartmentEvent;
+use App\Http\Requests\DepartmentRequest;
 
 
 class DepartmentService extends BaseService
@@ -38,5 +40,17 @@ class DepartmentService extends BaseService
             ->whereRelation('company', 'companies.id', $company_id)
             ->get();
         
+    }
+
+    public function sendSmsToEmployees($request)
+    {
+        $departments = $this->model
+            ->whereIn("id", $request->receiver)
+            ->has("employees")
+            ->get();
+        $payload["departments"] = $departments;
+        $payload["message"] = $request->message;
+        SendSmsToDepartmentEvent::dispatch($payload);
+        return true;
     }
 }
