@@ -88,11 +88,6 @@ __webpack_require__.r(__webpack_exports__);
       title: "Employee list",
       label: "Employees"
     }, {
-      icon: _icons_profile_icon__WEBPACK_IMPORTED_MODULE_4__["default"],
-      link: "/profile",
-      title: "Profile info",
-      label: "Profile"
-    }, {
       icon: _icons_BellIcon__WEBPACK_IMPORTED_MODULE_5__["default"],
       link: "/smslogs",
       title: "Sms Logs info",

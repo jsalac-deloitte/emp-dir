@@ -198,7 +198,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   setup: function setup(props) {
     var pageTitle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)("New User");
-    var companies = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)([]);
+    var companies = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
     var form = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useForm)({
       name: "",
       email: "",
@@ -218,7 +218,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   columns: "id, company_name"
                 }
               }).then(function (response) {
-                Object.assign(companies, response.data);
+                // Object.assign(companies, response.data);
+                companies.value = response.data;
               })["catch"](function (errors) {
                 console.log("Errors", errors);
                 sweetalert2__WEBPACK_IMPORTED_MODULE_8___default().fire({

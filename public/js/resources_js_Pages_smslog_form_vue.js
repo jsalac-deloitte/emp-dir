@@ -198,7 +198,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   setup: function setup(props) {
     var pageTitle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)("New Department");
-    var users = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)([]);
+    var users = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
     var form = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useForm)({
       department_name: "",
       id: null,
@@ -214,7 +214,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   columns: "id, name"
                 }
               }).then(function (response) {
-                Object.assign(users, response.data);
+                users.value = response.data;
               })["catch"](function (errors) {
                 console.log("Errors", errors);
                 sweetalert2__WEBPACK_IMPORTED_MODULE_8___default().fire({

@@ -122,6 +122,10 @@ Route::middleware(['auth'])->group(function() {
             //listing
             Route::get("/employees/get-list/all", "all")->name("get-list");
             Route::get("/employees/get-all/no-pagination", "allNoPagination")->name("listNoPagination");
+            /**
+             * for sending sms
+             */
+            Route::post("employees/send-sms-to-employees", "sendSmsToEmployees")->name("send.sms");
     });
 
     /**

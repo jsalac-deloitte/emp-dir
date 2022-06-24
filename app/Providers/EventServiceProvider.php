@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use Illuminate\Support\Facades\Event;
+use App\Events\SendSmsToEmployeeEvent;
 use Illuminate\Auth\Events\Registered;
 use App\Events\SendSmsToDepartmentEvent;
+use App\Listeners\SendSmsToEmployeeListener;
 use App\Listeners\SendSmsToDepartmentListener;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -22,6 +24,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         SendSmsToDepartmentEvent::class => [
             SendSmsToDepartmentListener::class
+        ],
+        SendSmsToEmployeeEvent::class => [
+            SendSmsToEmployeeListener::class
         ]
 
     ];

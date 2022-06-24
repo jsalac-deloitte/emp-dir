@@ -124,7 +124,7 @@ export default {
     },
     setup(props) {
         const pageTitle = ref("New User");
-        let companies = reactive([]);
+        let companies = ref([]);
         const form = useForm({
             name: "",
             email: "",
@@ -141,7 +141,8 @@ export default {
                     params: { columns: "id, company_name" },
                 })
                 .then((response) => {
-                    Object.assign(companies, response.data);
+                    // Object.assign(companies, response.data);
+                    companies.value = response.data;
                 })
                 .catch((errors) => {
                     console.log("Errors", errors);

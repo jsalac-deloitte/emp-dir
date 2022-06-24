@@ -4,6 +4,8 @@ namespace App\Http\Services;
 
 use App\Models\Employee;
 use App\Http\Services\BaseService;
+use Illuminate\Support\Facades\Log;
+use App\Events\SendSmsToEmployeeEvent;
 use App\Http\Requests\EmployeeRequest;
 
 class EmployeeService extends BaseService
@@ -28,5 +30,17 @@ class EmployeeService extends BaseService
          */
         $this->modelResource = "App\Http\Resources\EmployeeResource";
 
+    }
+
+    public function sendSmsToEmployees($request)
+    {
+        $employees = $this->model
+            ->whereIn("id", $request->receiver)
+            ->get();
+
+        $payload["employees"] = $employees;
+        $payload["message"] = $request->message;
+        SendSmsToEmployeeEvent::dispatch($payload);
+        return true;
     }
 }
