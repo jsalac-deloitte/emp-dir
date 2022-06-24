@@ -51,7 +51,7 @@ var CompanyStore = {
     getCompanyMeta: function getCompanyMeta(state) {
       return state.companyMeta;
     },
-    getCompanyLInks: function getCompanyLInks(state) {
+    getCompanyLinks: function getCompanyLinks(state) {
       return state.companyLinks;
     },
     getCompany: function getCompany(state) {
@@ -177,7 +177,7 @@ var EmployeeStore = {
     getEmployeeMeta: function getEmployeeMeta(state) {
       return state.employeeMeta;
     },
-    getEmployeeLInks: function getEmployeeLInks(state) {
+    getEmployeeLinks: function getEmployeeLinks(state) {
       return state.employeeLinks;
     },
     getEmployee: function getEmployee(state) {
@@ -272,7 +272,7 @@ var UserStore = {
     getUserMeta: function getUserMeta(state) {
       return state.userMeta;
     },
-    getUserLInks: function getUserLInks(state) {
+    getUserLinks: function getUserLinks(state) {
       return state.userLinks;
     },
     getUser: function getUser(state) {
@@ -1214,6 +1214,16 @@ var map = {
 		"/js/vendor",
 		"resources_js_Pages_components_PasswordField_vue"
 	],
+	"./components/SelectBox": [
+		"./resources/js/Pages/components/SelectBox.vue",
+		"/js/vendor",
+		"resources_js_Pages_components_SelectBox_vue"
+	],
+	"./components/SelectBox.vue": [
+		"./resources/js/Pages/components/SelectBox.vue",
+		"/js/vendor",
+		"resources_js_Pages_components_SelectBox_vue"
+	],
 	"./components/datatable/DataTable": [
 		"./resources/js/Pages/components/datatable/DataTable.vue",
 		"/js/vendor",
@@ -1517,6 +1527,36 @@ var map = {
 	],
 	"./store/user.js": [
 		"./resources/js/Pages/store/user.js"
+	],
+	"./user": [
+		"./resources/js/Pages/user/index.vue",
+		"/js/vendor",
+		"resources_js_Pages_user_index_vue"
+	],
+	"./user/": [
+		"./resources/js/Pages/user/index.vue",
+		"/js/vendor",
+		"resources_js_Pages_user_index_vue"
+	],
+	"./user/form": [
+		"./resources/js/Pages/user/form.vue",
+		"/js/vendor",
+		"resources_js_Pages_user_form_vue"
+	],
+	"./user/form.vue": [
+		"./resources/js/Pages/user/form.vue",
+		"/js/vendor",
+		"resources_js_Pages_user_form_vue"
+	],
+	"./user/index": [
+		"./resources/js/Pages/user/index.vue",
+		"/js/vendor",
+		"resources_js_Pages_user_index_vue"
+	],
+	"./user/index.vue": [
+		"./resources/js/Pages/user/index.vue",
+		"/js/vendor",
+		"resources_js_Pages_user_index_vue"
 	]
 };
 function webpackAsyncContext(req) {

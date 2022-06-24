@@ -26,7 +26,7 @@ class UserRequest extends FormRequest
         return [
             "email" => "required|max:195|unique:users,email,".$id,
             "name" => "required|max:195",
-            "password" => "required|max:195|string|min:6|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$/",
+            "password" => "required|max:195|min:6",
             "confirm_password" => "required|same:password",
             "company_id"    => "required|exists:companies,id,deleted_at,NULL"
         ];
@@ -36,15 +36,14 @@ class UserRequest extends FormRequest
      * error messages
      * @return array
      */
-    public function messages() 
+    public function messages($id = null) 
     {
         return [
             "email.required" => "Email is required",
             "email.exists"   => "Sorry we cannot find your email. please check it and try again",
-            "name.required" => "User's name is required",
+            "name.required"     => "User's name is required",
             "password.required" => "Password  is required",
-            "password.min" => "Password  is atleast 6 characters",
-            "password.regex" => "Password should contain Capital letter, small letter and number",
+            "password.min"      => "Password  is atleast 6 characters",
             "company_id.required" => "Company Id is required",
             "company_id.exists" => "Invalid company Id",
         ];

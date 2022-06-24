@@ -32,6 +32,7 @@ Route::as('companies.')
         Route::post("companies", "store")->name("store");
         Route::patch("companies/{id}", "update")->name("update");
         Route::delete("companies/{id}", "destroy")->name("destroy");
+        Route::get("companies/get-all/no-pagination", "allNoPagination")->name("listNoPagination");
 });
 
 Route::as('users.')

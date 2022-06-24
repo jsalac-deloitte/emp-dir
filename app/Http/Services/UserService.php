@@ -5,7 +5,6 @@ namespace App\Http\Services;
 use App\Models\User;
 use App\Http\Requests\UserRequest;
 use App\Http\Services\BaseService;
-use App\Http\Requests\CompanyRequest;
 
 class UserService extends BaseService
 {
@@ -14,7 +13,7 @@ class UserService extends BaseService
         $this->model = $model;
 
 		//will be use for data table searching
-		$this->searchableColumns = $this->model->getFillable();
+		$this->searchableColumns = array_merge($this->model->getFillable(), ["company.company_name"]);
 
 		// default value id
 		$this->defaultSortKey =  ["name"] ;

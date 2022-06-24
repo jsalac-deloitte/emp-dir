@@ -67,7 +67,7 @@ class AuthService
 
         //clear attempts
         $this->unBlockedUser($request->email);
-        $token = Auth::user()->createToken('CPA Token')->accessToken;
+        $token = Auth::user()->createToken('CPD Token')->accessToken;
         return [
             "token" => $token,
             "user" => Auth::user()->only(["name", "email"]),

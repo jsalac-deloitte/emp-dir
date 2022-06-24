@@ -118,7 +118,7 @@ export default {
 
         onMounted(() => {
             if (props.record) {
-                pageTitle.value = "Editing";
+                pageTitle.value = "Editing Company";
                 form.id = props.record.data.id;
                 form.company_name = props.record.data.company_name;
                 form.address = props.record.data.address;

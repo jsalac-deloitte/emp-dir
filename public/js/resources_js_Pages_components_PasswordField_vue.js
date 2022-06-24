@@ -34,7 +34,7 @@ __webpack_require__.r(__webpack_exports__);
       showPassword: showPassword
     };
   },
-  props: ["modelValue", "placeholder", "label", "type", "helper", "errorMessage", "name", "type"]
+  props: ["modelValue", "placeholder", "label", "type", "helper", "errorMessage", "name", "type", "required"]
 });
 
 /***/ }),
@@ -65,7 +65,7 @@ var _hoisted_4 = {
 var _hoisted_5 = {
   className: "flex items-center  bg-white border border-gray-500 rounded-xl px-2 py-1 relative marker:focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
 };
-var _hoisted_6 = ["placeholder", "value"];
+var _hoisted_6 = ["placeholder", "value", "required"];
 var _hoisted_7 = {
   className: " absolute right-2",
   title: "click to show or hide password"
@@ -127,7 +127,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     value: $props.modelValue,
     onInput: _cache[0] || (_cache[0] = function ($event) {
       return _ctx.$emit('update:modelValue', $event.target.value);
-    })
+    }),
+    required: $props.required
   }, null, 40
   /* PROPS, HYDRATE_EVENTS */
   , _hoisted_6), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {

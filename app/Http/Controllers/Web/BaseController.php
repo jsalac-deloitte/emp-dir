@@ -12,6 +12,22 @@ class BaseController extends Controller
     protected $modelAlias;
     protected $routes = [];
 
+
+    /**
+     * Display a listing of the resource with no pagination.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function allNoPagination(Request $request)
+    {
+        try {
+            return $this->modelService->getAllNoPagination($request->columns);
+        } catch(\Exception $ex) {
+            Log::info($ex->getMessage());
+            return redirect()->back()->with(["message" => "Errors occurred please contact system administrator"], 500);
+        }
+    }
+
     /**
      * Display a listing of the resource.
      *

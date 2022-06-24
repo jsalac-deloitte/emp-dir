@@ -14,7 +14,7 @@ class CompanyController extends BaseController
         $this->modelAlias = " Company ";
         $this->routes = [
             'main' => 'companies.display',
-            'form' => 'companies.form'
+            'form' => 'company/form'
         ];
     }
 }
