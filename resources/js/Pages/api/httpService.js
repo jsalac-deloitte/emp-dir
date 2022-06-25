@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiHttp = axios.create({
-    baseURL: "http://localhost:8000",
+    baseURL: "http://seph-vilt.herokuapp.com",
     headers: {
         "X-Requested-With": "XMLHttpRequest",
     },
